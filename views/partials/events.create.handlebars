@@ -1,0 +1,41 @@
+<!-- Modal Structure -->
+<div id="newEvent" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Event Name</h4>
+
+    <form action="">
+
+      <div class="form-group">
+        <label for="event_name">Event Name</label>
+        <input id="event_name" name="event_name" type="text" class="form-control" placeholder="">
+      </div>
+      <div class="input-daterange form-group" id="start_datepicker">
+        <label for="start_date">Start Date</label>
+        <input id="start_date" type="text" class="datepicker">
+      </div>
+      <div class="input-daterange form-group" id="start_timepicker">
+        <label for="start_time">Start Time</label>
+        <input id="start_time" type="text" class="timepicker">
+      </div>
+      <div class="input-daterange form-group" id="end_datepicker">
+        <label for="end_date">End Date</label>
+        <input id="end_date" type="text" class="datepicker">
+      </div>
+      <div class="input-daterange form-group" id="end_timepicker">
+        <label for="end_time">End Time</label>
+        <input id="end_time" type="text" class="timepicker">
+      </div>
+      <div class="form-group">
+        <label for="img_url">Image Url</label>
+        <input id="img_url" type="text" class="input">
+      </div>
+
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    {{!--
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat cancel">cancel</a> --}}
+    <a href="#!" id="saveEvent" class="modal-action modal-close waves-effect waves-green btn-flat save">Save Event</a>
+  </div>
+</div>

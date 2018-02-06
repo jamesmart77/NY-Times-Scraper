@@ -1,0 +1,102 @@
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>User Information</h4>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="first_name">First Name</label>
+                        <input class="left-alert validate" id="first_name" name="first_name" type="text" placeholder="First Name" data-error="wrong"
+                            data-success="right">
+                    </div>
+
+                    <div class="input-field col s6">
+                        <label for="last_name">Last Name</label>
+                        <input class="left-alert validate" id="last_name" name="last_name" type="text" placeholder="Last Name" data-error="wrong"
+                            data-success="right">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="email">Email</label>
+                        <input class="left-alert validate" id="modal-email" name="email" type="email" placeholder="Email" data-error="wrong" data-success="right">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="switch col s6">
+                        <label>
+                            User
+                            <input id="role-switch" type="checkbox" {{#unless admin}}disabled="disabled"{{/unless}}>
+                            <span class="lever"></span>
+                            Admin
+                        </label>
+                    </div>
+
+                    <div class="switch col s6">
+                        <label>
+                            Disabled
+                            <input id="active-switch" type="checkbox">
+                            <span class="lever"></span>
+                            Active
+                        </label>
+                    </div>
+
+                    <br>
+
+                    <div class="row img-row">
+                        <div class="input-field col s12">
+                            <label for="profile-img">Profile Photo</label>
+                            {{!--
+                            <i class="fa fa-facebook prefix right password-icon link" onclick="facebookAuth()"></i> --}}
+                            <a class="waves-effect waves-light btn-floating prefix facebook-btn" onclick="facebookAuth()">f</a>
+                            <input class="left-alert validate profile-img-input" id="profile-img" name="profile-img" type="text" placeholder="Image URL"
+                                data-error="wrong" data-success="right">
+                        </div>
+                    </div>
+                    {{#if create}}
+                    <div id="passwordCreate">
+                    <div class="input-field col s12">
+                                <label for="password">Password</label>
+                                <input class="left-alert validate" id="password" name="password" type="text" placeholder="Password" data-error="wrong" data-success="right">
+                            </div>
+                    </div>
+                    {{/if}}
+                    {{#if edit}}
+                    <div id="passwordEdit">
+                        <div class="row">
+                            <input type="checkbox" id="updatePassword" />
+                            <label for="updatePassword">Update Password</label>
+                        </div>
+                        <div id="passwordStuff" class="row">
+                            <div class="input-field col s4">
+                                <label for="password">Current Password</label>
+                                <input class="left-alert validate" id="oldPassword" name="oldPassword" type="text" placeholder="Password" data-error="wrong"
+                                    data-success="right">
+                            </div>
+                            <div class="input-field col s4">
+                                <label for="password">New Password</label>
+                                <input class="left-alert validate" id="password" name="password" type="text" placeholder="Password" data-error="wrong" data-success="right">
+                            </div>
+                            <div class="input-field col s4">
+                                <label for="password">Confirm New Password</label>
+                                <input class="left-alert validate" id="confirmPassword" name="confirmPassword" type="text" placeholder="Password" data-error="wrong"
+                                    data-success="right">
+                            </div>
+                        </div>
+                    </div><!-- end passwordEdit -->
+                    {{/if}}
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="modal-footer" id="create-user">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+    </div>
+</div>
