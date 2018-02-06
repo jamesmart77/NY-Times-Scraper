@@ -3,11 +3,15 @@ const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const bodyParser = require("body-parser");
 const path = require("path");
+const logger = require("morgan");
 
-const router = require('./routes/getRoutes');
-const api = require('./routes/api');
+const index = require('./routes/index_route');
+const scrape = require('./routes/scrape');
 
 const app = express();
+
+// Use morgan logger for logging requests
+app.use(logger("dev"));
 
 //make all files available in Public folder
 app.use(express.static(path.join(__dirname, 'public')))
@@ -27,8 +31,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //routes
-app.use('/', router);
-// app.use('/', api);
+app.use('/', index);
+app.use('/', scrape);
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
