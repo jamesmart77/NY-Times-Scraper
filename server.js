@@ -6,7 +6,7 @@ const path = require("path");
 const logger = require("morgan");
 
 const index = require('./routes/index_route');
-const scrape = require('./routes/scrape');
+const articlesRoute = require('./routes/articles');
 
 const app = express();
 
@@ -30,9 +30,14 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-//routes
+// =======================================
+//ROUTES
+
+// route to render home page
 app.use('/', index);
-app.use('/', scrape);
+
+// route to handle article GET and Save POST
+app.use('/', articlesRoute);
 
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
