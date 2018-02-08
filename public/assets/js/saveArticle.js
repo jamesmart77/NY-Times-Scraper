@@ -1,32 +1,24 @@
 //document ready
 $(() => {
 
-    const addArticleToMongo = () => {
+    const addArticleToMongo = (item) => {
         // alert("testing");
-        $.ajax({
-                method: "POST",
-                url: "/save",
-                data: {
-                    // Value taken from title input
-                    title: $("#saveArticle").data('title'),
-                    link: $("#saveArticle").data('link'),
-                    summary: $("#saveArticle").data('summary')
-                  }
-            })
-            .done((response) => {
-                //TODO -- get the materialize confirmations working
-                console.log("Saved successfully")
 
-            })
-            .catch((err) => {
-                console.log("ERROR");
-                console.log(err);
-            });
+        const data = {
+            // Value taken from title input
+            title: item.data('title'),
+            link: item.data('id'),
+            summary: item.data('summary')
+        }
+
+        //send article info to server to save
+        $.post("/save", data, (response) => console.log(response))
+
     }
 
-    $(".savebtn").on('click', '#saveArticle', () => {
-        if($(this).data('link')){
-            addArticleToMongo();
+    $("#articles").on('click', '.saveArticle', function () {
+        if ($(this).data('id')) {
+            addArticleToMongo($(this));
         }
     })
 

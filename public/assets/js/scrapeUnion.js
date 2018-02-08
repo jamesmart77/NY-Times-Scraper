@@ -41,8 +41,8 @@ $(() => {
                     )
                     // save button
                     .append($('<td class="article-cell">')
-                        .append($('<a id="saveArticle" class="waves-effect waves-yellow btn green">Save Article</a>')
-                            .attr('data-link', article.link)
+                        .append($('<a class="waves-effect waves-yellow btn green saveArticle">Save Article</a>')
+                            .data('id', article.link)
                             .attr('data-title', article.title)
                             .attr('data-summary', article.summary)
                         )

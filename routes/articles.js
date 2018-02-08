@@ -86,10 +86,10 @@ router.get("/scrape", (req, res) => {
 
 router.post("/save", (req, res) => {
 
-    const article = req.body.data;
-    console.log("Hitting it")
-    console.log(article)
-
+    const article = req.body;
+    console.log("Hitting it");
+    console.log(article);
+    
     // // Create a new Article using the `result` object built from scraping
     db.Article.create(article)
         .then(function (dbArticle) {
