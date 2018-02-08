@@ -2,6 +2,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: #555;
+    color: #fff;
 }
 
 .brand-logo {
@@ -17,9 +19,16 @@ body {
     height: 450px;
 }
 
-.article-cell{
+/* hover over table row */
+
+table.highlight>tbody>tr:hover {
+    color: #444;
+}
+
+.article-cell {
     padding: 20px 10px;
 }
+
 h1 {
     text-align: center !important;
 }
@@ -37,3 +46,41 @@ h2 {
     z-index: 5;
 }
 
+/* ========================== */
+
+/* ======SAVED ARTICLE PAGE========= */
+
+/* div holding buttons */
+.saved-options {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.view-note {
+    margin: 5px;
+    padding: 0 1rem;
+}
+
+.delete-note {
+    margin: 5px;
+}
+
+.delete-article-icon:hover {
+    color: #9c27b0;
+    -ms-transform: rotate(25deg);
+    /* IE 9 */
+    -webkit-transform: rotate(25deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(25deg);
+    -webkit-transition-duration: .3s;
+    /* Safari 4.0 - 8.0 */
+    transition-duration: .3s;
+}
+
+.delete-article-icon {
+    -webkit-transition-duration: .6s;
+    /* Safari 4.0 - 8.0 */
+    transition-duration: .6s;
+}

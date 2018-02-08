@@ -10,13 +10,16 @@ const router = express.Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-// Require all models
+// Require all models --> default get's the index.js
 const db = require("../models");
 
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/unionLeader");
+
+//make ObjectID available for querying
+const ObjectId = mongoose.Schema.ObjectId;
 
 // scrape new york times
 router.get("/scrape", (req, res) => {
@@ -84,12 +87,28 @@ router.get("/scrape", (req, res) => {
 
 });
 
+router.get("/saved", (req, res) => {
+
+    // Find all Users
+    db.Article.find({})
+        .then(function (dbArticle) {
+            // If all Users are successfully found, send them back to the client
+            console.log(dbArticle);
+            res.render('saved', {
+                articles: dbArticle
+            });
+        })
+        .catch(function (err) {
+            // If an error occurs, send the error back to the client
+            res.json(err);
+        });
+})
+
 router.post("/save", (req, res) => {
 
+    //get saved article object from req.body
     const article = req.body;
-    console.log("Hitting it");
-    console.log(article);
-    
+
     // // Create a new Article using the `result` object built from scraping
     db.Article.create(article)
         .then(function (dbArticle) {
@@ -103,4 +122,24 @@ router.post("/save", (req, res) => {
         });
 })
 
+router.delete("/articles/:id", (req, res) => {
+
+    //get saved article object from req.body
+    const articleId = req.params.id;
+
+    console.log("ID: " + articleId)
+
+    // // Create a new Article using the `result` object built from scraping
+    db.Article.remove({"_id": ObjectId(articleId)})
+        .then((dbArticle) => {
+            // View the added result in the console
+            console.log("success " + JSON.stringify(dbArticle));
+            res.send(`success deleting ${articleId}`)
+        })
+        .catch((err) => {
+            // If an error occurred, send it to the client
+            console.log("testing error " + err);
+            return res.json(err);
+        });
+})
 module.exports = router;

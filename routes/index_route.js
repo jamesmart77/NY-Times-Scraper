@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 
-// login view
+// homepage view
 router.get("/", (req, res) => {
 
 
