@@ -21,6 +21,12 @@ $(() => {
 
     //button click to scrape data
     $("#scrape").on('click', scrapeUnion)
+
+    //button click to scrape data
+    $(".side-nav").on('click', '#scrape', () => {
+        $('#sidenav-overlay').trigger( "click" );
+        scrapeUnion();
+    })
     //==================================================
     //FUNCTION TO ADD ARTICLES TO PAGE
 
@@ -37,7 +43,7 @@ $(() => {
                 .append($('<tr>')
                     // title & summary
                     .append($('<td class="article-cell">')
-                        .html(`<h5>${article.title}</h5><p>${article.summary}</p>`)
+                        .html(`<h5><a href='${article.link}' target='_blank'>${article.title}</a></h5><p>${article.summary}</p>`)
                     )
                     // save button
                     .append($('<td class="article-cell">')

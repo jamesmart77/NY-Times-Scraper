@@ -153,7 +153,7 @@ router.post("/articles/:id", function (req, res) {
             return db.Article.findOneAndUpdate({
                 _id: req.params.id
             }, {
-                notes: dbNote._id
+                $push: {notes: dbNote._id}
             }, {
                 new: true
             });
@@ -176,13 +176,27 @@ router.delete("/articles/:id", (req, res) => {
     console.log("ID: " + articleId)
 
     // // Create a new Article using the `result` object built from scraping
-    db.Article.remove({
-            "_id": ObjectId(articleId)
-        })
+    db.Article.remove({ _id: req.params.id })
         .then((dbArticle) => {
             // View the added result in the console
             console.log("success " + JSON.stringify(dbArticle));
             res.send(`success deleting ${articleId}`)
+        })
+        .catch((err) => {
+            // If an error occurred, send it to the client
+            console.log("testing error " + err);
+            return res.json(err);
+        });
+})
+
+router.delete("/notes/:id", (req, res) => {
+
+    // // Create a new Article using the `result` object built from scraping
+    db.Note.remove({ _id: req.params.id })
+        .then((dbNote) => {
+            // View the added result in the console
+            console.log("success " + JSON.stringify(dbNote));
+            res.send(`success deleting ${noteId}`)
         })
         .catch((err) => {
             // If an error occurred, send it to the client

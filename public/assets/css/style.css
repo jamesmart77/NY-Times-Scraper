@@ -1,6 +1,7 @@
 body {
     display: flex;
     min-height: 100vh;
+    min-width: 450px;
     flex-direction: column;
     background-color: #555;
     color: #fff;
@@ -13,6 +14,18 @@ body {
     margin: 0px 15px;
     font-family: 'Raleway';
     font-weight: 1px;
+}
+
+nav .brand-logo {
+    min-width: 27rem;
+}
+
+.side-nav {
+    background-color: lightgrey;
+}
+
+.menu-icon{
+    font-size: 35px !important;
 }
 
 .parallax-container {
@@ -67,12 +80,12 @@ h2 {
     padding: 0 1rem;
 }
 
-.delete-note {
+.delete-article {
     margin: 5px;
 }
 
 .delete-article-icon:hover {
-    color: #9c27b0;
+    color: #ff9800;
     -ms-transform: rotate(25deg);
     /* IE 9 */
     -webkit-transform: rotate(25deg);
@@ -91,6 +104,7 @@ h2 {
 
 /* modal */
 
+/* model text */
 #noteModal{
     color: #444;
 }
@@ -101,4 +115,28 @@ h2 {
 
 .new-note-container{
     margin: 2rem 0;
+}
+
+/* saved notes */
+
+/* container */
+
+#saved-note-items{
+    margin: 3rem 1rem; 
+}
+.note-item{
+    margin: 1.5rem 1rem;
+}
+
+.note-text{
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    min-height: 36px !important; /* making div at least as high as delete button -- alignment*/
+}
+
+/* saved note delete button */
+.deleteNote{
+    width: 3.5rem !important;
+    min-width: 45px !important;
 }

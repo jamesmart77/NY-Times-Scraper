@@ -10,7 +10,7 @@
             <table class="table-responsive highlight bordered">
                 <tbody id='saved-articles'>
                     {{#each articles}}
-                    <tr>
+                    <tr id="{{_id}}">
                         <td>
                             <h5>{{title}}</h5>
                             <p>{{summary}}</p>
@@ -18,7 +18,7 @@
                         <td colspan="2">
                             <div class='saved-options'>
                                 <a href="#noteModal" class="waves-effect waves-green btn purple modal-trigger view-note" data-id="{{_id}}">Notes</a>
-                                <a class="btn-floating btn-medium waves-effect waves-light red delete-note" data-id="{{_id}}">
+                                <a class="btn-floating btn-medium waves-effect waves-light red delete-article" data-id="{{_id}}">
                                     <i class="medium material-icons delete-article-icon">delete</i>
                                 </a>
                             </div>

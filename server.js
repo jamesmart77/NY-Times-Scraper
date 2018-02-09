@@ -16,6 +16,15 @@ app.use(logger("dev"));
 //make all files available in Public folder
 app.use(express.static(path.join(__dirname, 'public')))
 
+// hbs to test if user is on index page in...will be used in main.handlebars
+Handlebars.registerHelper("isOnIndexPage", (onIndex) => {
+    if (onIndex) {
+        return true;
+    } else {
+        return false;
+    }
+});
+
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
