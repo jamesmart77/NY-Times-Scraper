@@ -11,13 +11,11 @@
       </div>
     </div>
 
-    <hr>
-
     <div class="new-note-container row">
       <form action="" class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="new-note" class="materialize-textarea"></textarea>
+            <textarea id="new-note" class="materialize-textarea" required></textarea>
             <label for="new-note">Add New Note</label>
           </div>
         </div>
@@ -28,6 +26,6 @@
   <div class="modal-footer">
     {{!--
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat cancel">cancel</a> --}}
-    <a href="#!" id="addNote" class="modal-action modal-close waves-effect orange waves-green btn-flat save">Save Note</a>
+    <a href="#!" id="addNote" class="modal-action modal-close waves-effect orange waves-green btn-flat save" data-id="#!">Save Note</a>
   </div>
 </div>

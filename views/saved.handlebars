@@ -3,7 +3,7 @@
         <img src="/assets/images/saved.jpg" alt="Photo by Savs on Unsplash">
     </div>
 </div>
-<div class="section">
+<div class="section index-section">
     <div class="row container">
         <h2 id="saved-article-header" class="header">Your Saved Articles</h2>
         <div>
@@ -17,7 +17,7 @@
                         </td>
                         <td colspan="2">
                             <div class='saved-options'>
-                                <a href="#noteModal" class="waves-effect waves-green btn purple modal-trigger view-note">Notes</a>
+                                <a href="#noteModal" class="waves-effect waves-green btn purple modal-trigger view-note" data-id="{{_id}}">Notes</a>
                                 <a class="btn-floating btn-medium waves-effect waves-light red delete-note" data-id="{{_id}}">
                                     <i class="medium material-icons delete-article-icon">delete</i>
                                 </a>
