@@ -1,6 +1,8 @@
 //document ready
 $(() => {
 
+    $('#noteModal').modal();
+
     //DELETE EVENT
     $(".saved-options").on('click', '.delete-note', function () {
         const id = $(this).data("id");

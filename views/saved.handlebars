@@ -17,7 +17,7 @@
                         </td>
                         <td colspan="2">
                             <div class='saved-options'>
-                                <a class="waves-effect waves-green btn purple view-note">Notes</a>
+                                <a href="#noteModal" class="waves-effect waves-green btn purple modal-trigger view-note">Notes</a>
                                 <a class="btn-floating btn-medium waves-effect waves-light red delete-note" data-id="{{_id}}">
                                     <i class="medium material-icons delete-article-icon">delete</i>
                                 </a>
@@ -30,6 +30,8 @@
         </div>
     </div>
 </div>
+
+{{> note }}
 
 <script src="./assets/js/initialization.js"></script>
 <script src="./assets/js/scrapeUnion.js"></script>

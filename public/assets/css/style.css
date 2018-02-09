@@ -21,6 +21,10 @@ body {
 
 /* hover over table row */
 
+.index-section{
+    margin-bottom: 3rem;
+}
+
 table.highlight>tbody>tr:hover {
     color: #444;
 }
@@ -83,4 +87,18 @@ h2 {
     -webkit-transition-duration: .6s;
     /* Safari 4.0 - 8.0 */
     transition-duration: .6s;
+}
+
+/* modal */
+
+#noteModal{
+    color: #444;
+}
+
+.saved-notes {
+    margin-bottom: 2rem;
+}
+
+.new-note-container{
+    margin: 2rem 0;
 }
