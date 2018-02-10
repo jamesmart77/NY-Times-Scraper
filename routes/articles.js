@@ -11,12 +11,23 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 // Require all models --> default get's the index.js
-const db = require("../models");
+const collections = require("../models");
 
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/unionLeader");
+
+if(process.env.MONGODB_URI){
+    mongoose.connect(process.env.MONGODB_URI);
+} else {
+    mongoose.connect("mongodb://localhost/unionLeader");
+}
+
+const db = mongoose.connection
+
+db.on('error', (err) => console.log('Mongoose connection error: ', err));
+
+db.once('open', () => console.log('Mongoose connection successful!'));
 
 //make ObjectID available for querying
 const ObjectId = mongoose.Schema.ObjectId;
@@ -90,7 +101,7 @@ router.get("/scrape", (req, res) => {
 router.get("/saved", (req, res) => {
 
     // Find all Users
-    db.Article.find({})
+    collections.Article.find({})
         .then(function (dbArticle) {
             // If all Users are successfully found, send them back to the client
             console.log(dbArticle);
@@ -110,7 +121,7 @@ router.post("/save", (req, res) => {
     const article = req.body;
 
     // // Create a new Article using the `result` object built from scraping
-    db.Article.create(article)
+    collections.Article.create(article)
         .then(function (dbArticle) {
             // View the added result in the console
             console.log(dbArticle);
@@ -127,7 +138,7 @@ router.get("/articles/:id", function (req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
 
     console.log("looking it up")
-    db.Article.findOne({
+    collections.Article.findOne({
             _id: req.params.id
         })
         // ..and populate all of the notes associated with it
@@ -145,12 +156,12 @@ router.get("/articles/:id", function (req, res) {
 // Route for saving/updating an Article's associated Note
 router.post("/articles/:id", function (req, res) {
     // Create a new note and pass the req.body to the entry
-    db.Note.create(req.body)
+    collections.Note.create(req.body)
         .then(function (dbNote) {
             // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
             // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
             // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-            return db.Article.findOneAndUpdate({
+            return collections.Article.findOneAndUpdate({
                 _id: req.params.id
             }, {
                 $push: {notes: dbNote._id}
@@ -176,7 +187,7 @@ router.delete("/articles/:id", (req, res) => {
     console.log("ID: " + articleId)
 
     // // Create a new Article using the `result` object built from scraping
-    db.Article.remove({ _id: req.params.id })
+    collections.Article.remove({ _id: req.params.id })
         .then((dbArticle) => {
             // View the added result in the console
             console.log("success " + JSON.stringify(dbArticle));
@@ -192,7 +203,7 @@ router.delete("/articles/:id", (req, res) => {
 router.delete("/notes/:id", (req, res) => {
 
     // // Create a new Article using the `result` object built from scraping
-    db.Note.remove({ _id: req.params.id })
+    collections.Note.remove({ _id: req.params.id })
         .then((dbNote) => {
             // View the added result in the console
             console.log("success " + JSON.stringify(dbNote));
